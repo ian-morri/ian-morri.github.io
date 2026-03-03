@@ -1,6 +1,6 @@
 ---
 layout: post
-title: E-Commerce Sales Analytics & Forecasting
+title: E-Commerce Sales Analytics
 image: ""
 tags: [Business Analytics, SQL, Python, Tableau, Machine Learning]
 ---
@@ -13,7 +13,7 @@ tags: [Business Analytics, SQL, Python, Tableau, Machine Learning]
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project analyzes over **527,000 e-commerce transactions** from a UK-based online retailer to identify:
 
@@ -27,7 +27,7 @@ The objective was to transform raw transactional data into **actionable business
 
 ---
 
-## 📊 The Business Problem
+## The Business Problem
 
 The company lacked clear visibility into:
 
@@ -41,7 +41,7 @@ The goal was to support data-driven decision-making using structured analytics.
 
 ---
 
-## 📂 Dataset Overview
+## Dataset Overview
 
 * 527,764 transactions  
 * 13 months of sales data  
@@ -60,7 +60,7 @@ Key variables included:
 
 ---
 
-## 🛠 Tools & Technologies Used
+## Tools & Technologies Used
 
 * SQL  
     * Data cleaning  
@@ -82,9 +82,9 @@ Key variables included:
 
 ---
 
-## 📈 Key Insights
+## Key Insights
 
-### 1️⃣ Revenue is Highly Seasonal
+### Revenue is Highly Seasonal
 
 Sales peaked in **November** with a noticeable decline in December.
 
@@ -96,7 +96,7 @@ This indicates strong Q4 dependency and highlights the importance of:
 
 ---
 
-### 2️⃣ Clear B2B vs B2C Segmentation
+### Clear B2B vs B2C Segmentation
 
 Approximately 35% of customers were high-volume buyers.
 
@@ -113,7 +113,7 @@ Strategic recommendation:
 
 ---
 
-### 3️⃣ Inventory Inefficiency Identified
+### Inventory Inefficiency Identified
 
 156 products sold only once during the 13-month period.
 
@@ -127,6 +127,63 @@ Recommended actions:
 
 ---
 
-## 🧠 Example SQL Aggregation
+## Example SQL Aggregation
 
 Below is a simplified example of how revenue was analyzed:
+
+SELECT
+Country,
+SUM(Price * Quantity) AS Total_Revenue
+FROM sales_data
+GROUP BY Country
+ORDER BY Total_Revenue DESC;
+
+---
+
+## 📊 Dashboard Visualizations
+
+Dashboards included:
+
+* Monthly sales trends  
+* Cancellation patterns  
+* Top 10 countries by revenue  
+* Top-selling products by quantity  
+* Daily average sales trends  
+
+These dashboards support executive-level decision-making and operational monitoring.
+
+---
+
+## Final Recommendations
+
+1. Launch marketing campaigns before Q4 peak.  
+2. Implement bulk pricing incentives for B2B buyers.  
+3. Remove persistently low-performing SKUs.  
+4. Deploy predictive forecasting models.  
+5. Automate executive dashboards.  
+6. Integrate web analytics for customer behavior insights.  
+
+---
+
+## Limitations
+
+* Only 13 months of data  
+* No customer feedback or sentiment data  
+* No multi-year seasonal validation  
+
+Future improvements should include 3–5 years of historical data for stronger forecasting accuracy.
+
+---
+
+## Skills Demonstrated
+
+* Data Cleaning & Transformation  
+* SQL Querying & Aggregation  
+* Time-Series Analysis  
+* Business Intelligence Dashboarding  
+* Statistical Analysis  
+* Machine Learning Classification  
+* Inventory Optimization Strategy  
+* Business-Focused Recommendation Development  
+
+---
