@@ -1,7 +1,7 @@
 ---
 layout: post
 title: E-Commerce Sales Analytics
-image: ""
+image: "_posts/e_commerce.jpg"
 tags: [Business Analytics, SQL, Python, Tableau, Machine Learning]
 ---
 
