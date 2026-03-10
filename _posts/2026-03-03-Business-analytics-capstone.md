@@ -1,11 +1,11 @@
 ---
 layout: post
-title: E-Commerce Sales Analytics & Forecasting
-image: "/posts/ecommerce-analytics-title-img.png"
+title: E-Commerce Sales Analytics 
+image: "/posts/ecommerce.jpg"
 tags: [Business Analytics, SQL, Python, Tableau, Machine Learning]
 ---
 
-In this project we analyze over **527,000 e-commerce transactions** from a UK-based online retailer in order to uncover sales patterns, identify high-value customers, and recommend data-driven strategies for inventory and marketing optimization.
+In this project, we analyzed over **527,000 e-commerce transactions** from a UK-based online retailer to uncover sales patterns, identify high-value customers, and recommend data-driven strategies for inventory and marketing optimization.
 
 The project demonstrates how business analytics tools such as **SQL, Python, Tableau, and statistical analysis** can transform raw transaction data into actionable insights.
 
