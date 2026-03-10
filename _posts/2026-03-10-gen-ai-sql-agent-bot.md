@@ -5,9 +5,9 @@ image: "/posts/gen-ai-sql-agent-title-img.png"
 tags: [GenAI, SQL, Agents, Python, LangChain, PostgreSQL]
 ---
 
-In this project, we built a practical **SQL AI Agent** for our grocery retail client, capable of taking natural-language questions and turning them into accurate PostgreSQL queries against their database.
+In this project, we built a practical **SQL AI Agent** for our grocery retail client, capable of taking natural-language questions and generating accurate PostgreSQL queries against their database.
 
-The agent can; interpret the user's intent, plan how to answer it using SQL, write an appropriate query, execute that query on the database, and return a clear natural-language answer  
+The agent can interpret the user's intent, plan how to answer it using SQL, write an appropriate query, execute that query on the database, and return a clear natural-language answer  
 
 We achieve this by combining:
 
@@ -557,4 +557,5 @@ Potential future enhancements include:
 This project provides a strong foundation for an AI-powered, self-serve analytics layer on top of ABC Grocery’s SQL data, with safety and correctness built in from the ground up.
 
 ___
+
 
