@@ -1,189 +1,265 @@
 ---
 layout: post
-title: E-Commerce Sales Analytics
-image: "/posts/e_commerce.jpg"
+title: E-Commerce Sales Analytics & Forecasting
+image: "/posts/ecommerce-analytics-title-img.png"
 tags: [Business Analytics, SQL, Python, Tableau, Machine Learning]
 ---
 
-# E-Commerce Sales Analytics & Forecasting
-## Business Analytics Capstone Project
-### Turning 527K+ Transactions into Strategic Insights
-#### Using SQL, Python, Tableau & Machine Learning
-##### Focused on Revenue Optimization & Inventory Efficiency
+In this project we analyze over **527,000 e-commerce transactions** from a UK-based online retailer in order to uncover sales patterns, identify high-value customers, and recommend data-driven strategies for inventory and marketing optimization.
+
+The project demonstrates how business analytics tools such as **SQL, Python, Tableau, and statistical analysis** can transform raw transaction data into actionable insights.
+
+# Table of Contents
+
+- [00. Project Overview](#overview-main)
+    - [Context](#overview-context)
+    - [Actions](#overview-actions)
+    - [Results](#overview-results)
+    - [Growth / Next Steps](#overview-growth)
+- [01. Data Overview](#data-overview)
+- [02. Analytical Approach](#analysis-methods)
+- [03. Key Insights](#analysis-insights)
+- [04. Data Visualization](#visualizations)
+- [05. Business Recommendations](#recommendations)
+- [06. Limitations & Future Work](#limitations)
+
+___
+
+# 00. Project Overview <a name="overview-main"></a>
+
+### Context <a name="overview-context"></a>
+
+E-commerce businesses generate large volumes of transaction data, but without proper analysis this information provides little value for strategic decision making.
+
+The goal of this project was to analyze historical transaction data from a UK-based online shop in order to understand:
+
+* Which products generate the most revenue  
+* How customer purchasing behavior varies  
+* Which countries generate the most sales  
+* Whether seasonal demand patterns exist  
+* Which products underperform and waste inventory space  
+
+Understanding these patterns allows the business to optimize both **marketing strategy and operational efficiency**.
 
 ---
 
-## Project Overview
+### Actions <a name="overview-actions"></a>
 
-This project analyzes over **527,000 e-commerce transactions** from a UK-based online retailer to identify:
+To address these questions we performed several stages of analysis:
 
-* Revenue drivers  
-* Seasonal demand trends  
-* Customer segmentation opportunities  
-* Inventory inefficiencies  
-* International expansion potential  
+* Cleaned and prepared the raw dataset
+* Performed descriptive statistical analysis
+* Identified product performance patterns
+* Conducted geographic and seasonal trend analysis
+* Built dashboards and visualizations
+* Evaluated classification models in Weka
 
-The objective was to transform raw transactional data into **actionable business recommendations**.
+The project used a combination of analytical tools:
 
----
-
-## The Business Problem
-
-The company lacked clear visibility into:
-
-* Seasonal revenue concentration
-* Bulk vs. individual purchasing behavior
-* Low-performing product impact
-* Geographic sales distribution
-* Inventory optimization opportunities
-
-The goal was to support data-driven decision-making using structured analytics.
+* **SQL** – Data querying and aggregation  
+* **Python** – Data processing and exploratory analysis  
+* **Tableau / Power BI** – Data visualization dashboards  
+* **Excel / R** – Descriptive statistical analysis  
+* **Weka** – Classification models  
 
 ---
 
-## Dataset Overview
+### Results <a name="overview-results"></a>
 
-* 527,764 transactions  
-* 13 months of sales data  
-* 38 countries  
-* 3,768 unique products  
+The analysis revealed several key findings:
 
-Key variables included:
+* Revenue is heavily concentrated in the **holiday season**, particularly November.
+* Approximately **35% of customers purchase in bulk**, suggesting a strong B2B segment.
+* A large number of products generate very little demand.
+* A small number of products dominate overall sales volume.
+* Sales are highly concentrated in the **United Kingdom**, with smaller secondary markets abroad.
 
-1. Transaction ID  
-2. Date  
-3. Product ID & Name  
-4. Price (£)  
-5. Quantity  
-6. Customer ID  
-7. Country  
+These insights led to several operational and strategic recommendations.
 
 ---
 
-## Tools & Technologies Used
+### Growth / Next Steps <a name="overview-growth"></a>
 
-* SQL  
-    * Data cleaning  
-    * Aggregation  
-    * Customer segmentation  
-* Python  
-    * Correlation analysis  
-    * Automation scripts  
-    * Trend analysis  
-* Tableau / Power BI  
-    * Interactive dashboards  
-    * Sales visualization  
-* Weka  
-    * OneR  
-    * ZeroR  
-    * J48 Decision Tree  
-* Excel / R  
-    * Descriptive statistics  
+Future improvements to this project could include:
 
----
+* Incorporating **multi-year sales data** for stronger trend analysis
+* Implementing **predictive forecasting models**
+* Integrating **customer behavior analytics**
+* Developing automated reporting dashboards
 
-## Key Insights
+These improvements would help transform the analysis into a **continuous decision-support system**.
 
-### Revenue is Highly Seasonal
+___
 
-Sales peaked in **November** with a noticeable decline in December.
+# 01. Data Overview <a name="data-overview"></a>
 
-This indicates strong Q4 dependency and highlights the importance of:
+The dataset contains **527,764 e-commerce transactions** collected over a **13-month period**.
 
-* Early inventory planning  
-* Pre-holiday marketing campaigns  
-* Forecast-driven stocking strategies  
+Key characteristics of the dataset include:
 
----
+* Transactions from **38 different countries**
+* **3,768 unique products**
+* Both **individual customers and bulk buyers**
 
-### Clear B2B vs B2C Segmentation
+### Key Variables
 
-Approximately 35% of customers were high-volume buyers.
+| Variable | Description |
+|---|---|
+| Transaction ID | Unique identifier for each purchase |
+| Date | Date of transaction |
+| Product ID | Unique product identifier |
+| Product Name | Name of item purchased |
+| Price | Unit price (£) |
+| Quantity | Number of units purchased |
+| Customer ID | Unique customer identifier |
+| Country | Customer location |
 
-High standard deviation in quantity confirmed a dual purchasing pattern:
+Negative quantity values indicated **cancelled transactions**, which were considered during analysis.
 
-* Bulk B2B buyers  
-* Individual B2C consumers  
+___
 
-Strategic recommendation:
+# 02. Analytical Approach <a name="analysis-methods"></a>
 
-1. Dedicated bulk pricing tiers  
-2. Separate marketing strategies  
-3. Incentive-based loyalty programs  
+The analysis followed several structured steps.
 
----
+### Data Cleaning
 
-### Inventory Inefficiency Identified
+Before performing analysis, the dataset was cleaned to address:
 
-156 products sold only once during the 13-month period.
+* Missing values
+* Incorrect data types
+* Categorical vs numerical formatting
 
-This suggests capital and warehouse space tied up in low-performing SKUs.
-
-Recommended actions:
-
-* Discontinue consistently underperforming products  
-* Reallocate capital toward high-demand items  
-* Improve SKU performance tracking  
+Fortunately, the dataset contained relatively few inconsistencies.
 
 ---
 
-## Example SQL Aggregation
+### Statistical Analysis
 
-Below is a simplified example of how revenue was analyzed:
+Descriptive statistics were used to understand pricing and purchasing behavior.
 
-SELECT
-Country,
-SUM(Price * Quantity) AS Total_Revenue
-FROM sales_data
-GROUP BY Country
-ORDER BY Total_Revenue DESC;
+For example:
+
+* Average product price was approximately **£4.65**
+* Some products had price outliers above **£110**
+* Purchase quantities varied significantly between customers
+
+This variation suggested both **individual buyers and bulk purchasing behavior**.
 
 ---
 
-## 📊 Dashboard Visualizations
+### Machine Learning Models
+
+Several classification models were tested using Weka.
+
+**OneR Model**
+
+* Approximately **90% classification accuracy**
+* However, the model was strongly biased toward the majority class.
+
+**ZeroR Model**
+
+* Produced a correlation coefficient of **0**
+* Demonstrated no predictive capability.
+
+These results suggested that the available features were not well suited for classification tasks.
+
+___
+
+# 03. Key Insights <a name="analysis-insights"></a>
+
+### Seasonal Sales Patterns
+
+Sales activity peaked in **November**, followed by a decline in December.
+
+This pattern aligns with **holiday shopping behavior**.
+
+Implication:
+
+* Inventory planning and marketing campaigns should begin **well before the holiday season**.
+
+---
+
+### Customer Segmentation
+
+Analysis of purchasing behavior revealed two distinct customer types:
+
+* Individual consumers purchasing small quantities
+* Bulk buyers purchasing large quantities for resale
+
+Bulk buyers accounted for a **significant share of total revenue**.
+
+---
+
+### Product Performance
+
+A small number of products dominated overall sales.
+
+Top selling items included:
+
+* Popcorn Holder
+* WWII Gliders (Toy Planes)
+* Jumbo Red Bag
+
+Meanwhile, **156 products were sold only once** during the 13-month period.
+
+These items likely consume inventory space without generating meaningful revenue.
+
+---
+
+### Geographic Distribution
+
+Sales were heavily concentrated in:
+
+1. United Kingdom  
+2. Netherlands  
+3. Germany  
+
+Although the business sells internationally, most revenue comes from the UK market.
+
+This suggests strong brand recognition domestically but **limited global penetration**.
+
+___
+
+# 04. Data Visualization <a name="visualizations"></a>
+
+To better interpret the results, several dashboards and visualizations were developed.
 
 Dashboards included:
 
-* Monthly sales trends  
-* Cancellation patterns  
-* Top 10 countries by revenue  
-* Top-selling products by quantity  
-* Daily average sales trends  
+* Monthly sales trends
+* Cancellation patterns
+* Top 10 countries by revenue
+* Top-selling products by quantity
+* Daily average sales trends
 
-These dashboards support executive-level decision-making and operational monitoring.
+These visual tools help transform raw data into **clear operational insights for business leaders**.
 
----
+___
 
-## Final Recommendations
+# 05. Business Recommendations <a name="recommendations"></a>
 
-1. Launch marketing campaigns before Q4 peak.  
-2. Implement bulk pricing incentives for B2B buyers.  
-3. Remove persistently low-performing SKUs.  
-4. Deploy predictive forecasting models.  
-5. Automate executive dashboards.  
-6. Integrate web analytics for customer behavior insights.  
+Based on the analysis, several strategic recommendations were developed.
 
----
+1. Launch marketing campaigns before the Q4 peak season.
+2. Implement bulk pricing incentives for B2B buyers.
+3. Remove persistently low-performing SKUs.
+4. Deploy predictive forecasting models for inventory planning.
+5. Automate executive dashboards for real-time reporting.
+6. Integrate web analytics tools to better understand customer behavior.
 
-## Limitations
+These changes could significantly improve both **profitability and operational efficiency**.
 
-* Only 13 months of data  
-* No customer feedback or sentiment data  
-* No multi-year seasonal validation  
+___
 
-Future improvements should include 3–5 years of historical data for stronger forecasting accuracy.
+# 06. Limitations & Future Work <a name="limitations"></a>
 
----
+While the project produced valuable insights, several limitations should be considered.
 
-## Skills Demonstrated
+* Only **13 months of historical data** were available.
+* Customer feedback or satisfaction metrics were not included.
+* Market trends and competitor activity were not analyzed.
 
-* Data Cleaning & Transformation  
-* SQL Querying & Aggregation  
-* Time-Series Analysis  
-* Business Intelligence Dashboarding  
-* Statistical Analysis  
-* Machine Learning Classification  
-* Inventory Optimization Strategy  
-* Business-Focused Recommendation Development  
+Future research should incorporate **longer historical datasets and customer behavior data** to improve forecasting accuracy and strategic planning.
 
----
+___
