@@ -5,9 +5,9 @@ image: "/posts/gen-ai-sql-agent-title-img.png"
 tags: [GenAI, SQL, Agents, Python, LangChain, PostgreSQL]
 ---
 
-In this project we build a practical **SQL AI Agent** for our grocery retail client, capable of taking natural-language questions and turning them into accurate PostgreSQL queries against their database.
+In this project, we built a practical **SQL AI Agent** for our grocery retail client, capable of taking natural-language questions and turning them into accurate PostgreSQL queries against their database.
 
-The agent is able to; interpret the user's intent, plan how to answer it using SQL, write an appropriate query, execute that query on the database, and return a clear natural-language answer  
+The agent can; interpret the user's intent, plan how to answer it using SQL, write an appropriate query, execute that query on the database, and return a clear natural-language answer  
 
 We achieve this by combining:
 
@@ -70,14 +70,14 @@ We built an end-to-end SQL Agent that:
 * Uses LangChain’s SQL tooling to inspect schemas and run queries  
 * Returns both the SQL results and a human-readable explanation  
 
-We also traced and inspected runs in LangSmith, validating that queries were; correct, efficient, and aligned with our design rules.
+We also traced and inspected runs in LangSmith, validating that queries were correct, efficient, and aligned with our design rules.
 
 ### Results <a name="overview-results"></a>
 
 The final SQL Agent:
 
 * Correctly answered natural-language questions that touched both tables  
-* Automatically handled grouping, aggregation and joins  
+* Automatically handled grouping, aggregation, and joins  
 * Respected constraints such as the allowed date range and aggregation discipline  
 * Demonstrated good practices (for example, handling transaction-level aggregation correctly)  
 
@@ -127,7 +127,7 @@ Sample rows:
 This table is at the *customer_id, transaction_id, product_area_id* level, meaning:
 
 * A single transaction can have multiple rows (one per product area)  
-* Aggregations must be done carefully to avoid double counting  
+* Aggregations must be done carefully to avoid double-counting  
 
 Key columns:
 
@@ -154,7 +154,7 @@ ___
 
 # 02. SQL Agent Overview <a name="agent-overview"></a>
 
-Rather than simply asking an LLM to *write some SQL*, we build a full **SQL Agent**. The difference is that a simple *SQL writer* just outputs a query (it has no direct access to the database and cannot inspect schemas or data) whereas a SQL Agent can; read the schema, inspect sample rows, choose tools to run queries, iterate based on tool results, and of course return a final answer.
+Rather than simply asking an LLM to *write some SQL*, we build a full **SQL Agent**. The difference is that a simple *SQL writer* just outputs a query (it has no direct access to the database and cannot inspect schemas or data), whereas a SQL Agent can; read the schema, inspect sample rows, choose tools to run queries, iterate based on tool results, and of course return a final answer.
 
 In this project, the agent:
 
@@ -295,14 +295,14 @@ For reference, the content of *sql-agent-system-prompt.txt* is shown below:
 ```text
 ROLE:
 
-You are an expert SQL data analyst, and helpful assistant. Convert the user’s question into an accurate, efficient PostgreSQL 16 SELECT query and a concise natural-language answer.
+You are an expert SQL data analyst and a helpful assistant. Convert the user’s question into an accurate, efficient PostgreSQL 16 SELECT query and a concise natural-language answer.
 
 
 SCOPE:
 
 - Use read-only SELECT only (never INSERT/UPDATE/DELETE/DDL/admin).
 
-- All tables live in schema grocery_db. Always schema-qualify (e.g grocery_db.customer_details)
+- All tables live in the schema grocery_db. Always schema-qualify (e.g grocery_db.customer_details)
 
 
 TABLE INFORMATION:
@@ -325,10 +325,10 @@ grocery_db.transactions holds data at the level of one row per customer_id, tran
 Columns:
 
 - customer_id INT (the unique identifier for the customer)
-- transaction_date DATE (the date of the transaction, for example 2020-04-10)
+- transaction_date DATE (the date of the transaction, for example, 2020-04-10)
 - transaction_id INT (a unique id for each individual transaction)
 - product_area_id INT (a number from 1 to 5 that represents the product area that was shopped in. There can be multiple product areas within a transaction)
-- num_items INT (the number items within that product area, for that transaction)
+- num_items INT (the number of items within that product area, for that transaction)
 - sales_cost NUMERIC(10,2) (the monetary value for the items purchased within that product area, for that transaction)
 
 
@@ -339,7 +339,7 @@ grocery_db.customer_details can be joined to grocery_db.transactions using the s
 
 DATA WINDOW:
 
-Transactions data is available between 2020-04-01 to 2020-09-30. If the user asks about "this period", assume that range. If they ask about a different period, filter explicitly. If they ask for data from outside this window, reply to them with the information pertaining to the period that is available.
+Transaction data is available between 2020-04-01 and 2020-09-30. If the user asks about "this period", assume that range. If they ask about a different period, filter explicitly. If they ask for data from outside this window, reply to them with the information about the period that is available.
 
 
 QUERY DESIGN RULES:
@@ -383,7 +383,7 @@ where
 
 Response A:
 
-"There are 380 male customers"
+"There are 380 male customers."
 
 
 Question B: 
@@ -464,7 +464,7 @@ limit 1;
 
 Response C:
 
-"Customer 514 had the highest average transaction value in July 2020, at $1027.77"
+"Customer 514 had the highest average transaction value in July 2020, at $1027.77."
 ```
 <br>
 This prompt gives the agent:
@@ -476,7 +476,7 @@ This prompt gives the agent:
 * Query design rules  
 * A small number of worked examples  
 
-All of which greatly increase the chance of correct, production-quality queries.
+All of which greatly increases the chance of correct, production-quality queries.
 
 ---
 
@@ -538,7 +538,7 @@ This required both tables and more careful logic. Here, the agent:
 * Correctly aggregated sales at the transaction level (summing by *transaction_id* first)  
 * Then averaged these transaction values per customer  
 
-Again, we cross-checked the SQL and results, and inspected the run in LangSmith to confirm that the agent followed the desired approach.
+Again, we cross-checked the SQL and results and inspected the run in LangSmith to confirm that the agent followed the desired approach.
 
 These examples demonstrate that the agent is not just writing plausible SQL, but is actually **reasoning correctly about grain, joins, and aggregations**, guided by the system prompt and tools.
 
@@ -557,3 +557,4 @@ Potential future enhancements include:
 This project provides a strong foundation for an AI-powered, self-serve analytics layer on top of ABC Grocery’s SQL data, with safety and correctness built in from the ground up.
 
 ___
+
